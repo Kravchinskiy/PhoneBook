@@ -169,15 +169,11 @@ class PhoneBook (msg.Messages):
             self.msg = ""
             self.add_message()
             return
-        if 1 == 2:          # old version code (single number)
-            for name in self.data:
-                out_file.write(name + ";" + self.data[name] + "\n")
-        else:               # new version code (multi numbers)
-            for element in self.numbers:
-                phones = element.get_list()
-                for number in phones:
-                    self.msg = element.get_name() + ";" + number + "\n"
-                    out_file.write(self.msg)
+        for element in self.numbers:
+            phones = element.get_list()
+            for number in phones:
+                self.msg = element.get_name() + ";" + number + "\n"
+                out_file.write(self.msg)
         out_file.close()
         self.status = False
 
